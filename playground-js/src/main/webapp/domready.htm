@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>domReady Sample Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<script type="text/javascript" src="resources/scripts/addevent.js"></script>
+<script type="text/javascript" src="resources/scripts/domready.js"></script>
+<script type="text/javascript" src="resources/scripts/onload.js"></script>
+<script type="text/javascript">
+
+
+function leadingZero(nr)
+{
+	if (nr < 10) nr = "0" + nr;
+	return nr;
+}
+
+function showEvents(s) {
+	var el = document.getElementById("alerts");
+	var d = new Date();
+	el.innerHTML = el.innerHTML + leadingZero(d.getHours()) + ":" + leadingZero(d.getMinutes()) + ":" + leadingZero(d.getSeconds()) + " - " + s + "<br>";
+}
+
+function testFunction(){
+	showEvents("domReady | testFunction: The DOM is ready");
+	var els = document.getElementsByTagName("h1");
+	if(els)
+		els[0].className = "red";
+	showEvents("domReady | testFunction: Changed heading color");
+	document.body.className = "body";
+	showEvents("domReady | testFunction: Changed font");
+};
+
+domReady(testFunction);
+domReady(function() {
+	showEvents("domReady | anonymous function: Hello");
+});
+
+addEvent(window, 'load', function() {
+	showEvents("addEvent | load | anonymous function: The whole page is loaded.");
+});
+</script>
+<style type="text/css">
+body { font: 12px/1.5 arial, sans-serif; }
+h1 {
+	font-size: 2em;
+	line-height: 1.5;
+	margin: 0.75em 0;
+}
+h2 {
+	font-size: 1.5em;
+	line-height: 1;
+	margin: 1em 0;
+}
+p {
+	margin: 1.5em 0;
+}
+ul {
+	padding: 0;
+	margin: 1.5em 0 1.5em 3em;
+}
+.red { color: red; }
+</style>
+</head>
+
+
+<body onload="showEvents('body | onload: First alert.');showEvents('body | onload: Second alert.');">
+<h1>domReady Sample Page</h1>
+<p>The domReady function handles DOMContentLoaded events in your browser. If a browser doesn't support the DOMContentLoaded event, it will be simulated. A DOMContentLoaded event allows you to add behavior or change the HTML of a page after the HTML has loaded and before the onload event which happens after the complete page, including images has loaded. This allows you to add menu, tree behavior, AJAX functionality or anything else without having to wait for all items on a page to load. You may have experienced the need for a DOMContentLoaded event on a page that includes drop down menus or a tabbed interface which doesn't work until all images have loaded. Using the DOMContentLoaded event allows you to add the behavior before images and objects have loaded.</p>
+<p>The alert log will display the time of each event. The following events are called:</p>
+<ul>
+<li>A function called testFunction, with domReady.</li>
+<li>An anonymous function with domReady.
+<li>An anonymous function on load with addEvent.</li>
+<li>An onload event from the body element.</li>
+</ul>
+<p>A large image is loaded to provide a delay so that you can see the difference in time between the DOMContentLoaded and load events.</p>
+<h2>alert log</h2>
+<div id="alerts"></div>
+<h2>large image</h2>
+<!-- Because it doesn't work with IE Mac
+<p id="poster"><img src="domfunction_iotbs.bmp" alt="Invasion of the Body Snatchers poster (1956)" /></p>
+-->
+<p id="poster"><img src="resources/images/quality.jpg" alt="A high quality image..." /></p>
+<p>Footer</p>
+</body>
+</html>
