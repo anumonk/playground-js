@@ -18,6 +18,7 @@ function addEvent(element, type, handler) {
 	}
 	
 	if (element.addEventListener) {
+		console.log("Add listener supported for element:" + element)
 		element.addEventListener(type, handler, false);
 	} else {
 		// assign each event handler a unique ID
