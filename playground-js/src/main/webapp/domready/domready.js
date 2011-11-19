@@ -8,18 +8,18 @@
 	domReady.attach = function(handler) {
 		// Assign each event handler a unique ID. If the handler has an ID, it
 		// has already been added to the events object or been run.
-		console.log("added handler" + handler);
-
 		if (!handler.$$domReadyID) {
 			handler.$$domReadyID = domReadyID++;
 
 			// If the DOMContentLoaded event has happened, run the function.
 			if (bDone) {
 				handler();
+				return true;
 			}
 
 			// store the event handler in the hash table
 			events[handler.$$domReadyID] = handler;
+			console.log("Added dom-ready event handler at index:" + domReadyID);
 		}
 	};
 
@@ -38,15 +38,12 @@
 			events[i]();
 		}
 	}
-	
+
 	if (document.addEventListener) {
-		console.log("Add listener supported...");
 		document.addEventListener("DOMContentLoaded", function() {
-			console.log("DOM content loaded event");
+			console.log("DOM content loaded event fired");
 			run();
 		}, false);
 	}
 
 }(window.domReady = window.domReady || {}));
-
-

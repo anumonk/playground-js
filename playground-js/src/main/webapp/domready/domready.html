@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>domReady Sample Page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<script type="text/javascript" src="resources/scripts/addevent.js"></script>
-<script type="text/javascript" src="resources/scripts/domready.js"></script>
+<script type="text/javascript" src="addevent.js"></script>
+<script type="text/javascript" src="domready.js"></script>
 <script type="text/javascript">
 
 
@@ -30,6 +30,10 @@ function testFunction(){
 
 addEvent(window, 'load', function() {
 	showEvents("addEvent | load | anonymous function: The whole page is loaded.");
+});
+
+addEvent(window, 'load', function() {
+	showEvents("Another onload handler...");
 });
 
 domReady.attach(testFunction);
@@ -65,6 +69,7 @@ ul {
 <body>
 <h1>DOM Ready Sample</h1>
 <p>An example to show how we can react to the DOM ready event and run various scripts before everything on a page is loaded and an onload event fired. Inspired by Dean Edwards, 2005</p>
+<p>This example has only been tested under chrome...</p>
 <p>The following functions are applied to demonstrate this behavior:</p>
 
 <ul>
@@ -76,7 +81,7 @@ ul {
 <h2>alert log</h2>
 <div id="alerts"></div>
 <h2>large image</h2>
-<p id="poster"><img src="resources/images/quality.jpg" alt="A high quality image..." /></p>
+<p id="poster"><img src="quality.jpg" alt="A high quality image..." /></p>
 <p>Footer</p>
 </body>
 </html>
