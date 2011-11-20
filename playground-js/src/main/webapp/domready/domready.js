@@ -6,6 +6,12 @@
 	var bDone = false;
 
 	domReady.attach = function(handler) {
+
+		if (typeof handler !== "function") {
+			throw "DOM Handler Must Be A Function: received arg of type: "
+					+ handler.toString();
+		}
+
 		// Assign each event handler a unique ID. If the handler has an ID, it
 		// has already been added to the events object or been run.
 		if (!handler.$$domReadyID) {
