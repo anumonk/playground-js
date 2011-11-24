@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Closures Example</title>
+<script type="text/javascript"
+	src="../resources/scripts/jquery-1.6.2.min.js"></script>
+
+<script type="text/javascript">
+	function addIndexOnAlert(i) {
+		return function() {
+			alert("You clicked on index:" + i);
+		}
+	}
+
+	$(function() {
+		$("a#incorrect-index").click(function() {
+			var i = 1;
+			for (i = 1; i <= 2; i++) {
+				$("a#index-link" + i).click(addIndexOnAlert(i));
+
+			}
+		});
+	});
+</script>
+
+</head>
+
+
+<body>
+
+
+	Example of odd behaviors with closures in java-script.
+
+	<a id="incorrect-index" href="#incorrect-index">Generate Alert With
+		Correct Index and Call Back</a>
+
+
+	<a id="index-link1" href="#index-link">Index Link</a>
+	<a id="index-link2" href="#index-link">Index Link</a>
+
+</body>
+</html>
