@@ -9,34 +9,71 @@
 	function addIndexOnAlert(i) {
 		return function() {
 			alert("You clicked on index:" + i);
-		}
+		};
 	}
 
 	$(function() {
-		$("a#incorrect-index").click(function() {
-			var i = 1;
-			for (i = 1; i <= 2; i++) {
-				$("a#index-link" + i).click(addIndexOnAlert(i));
 
-			}
-		});
+		$("a#incorrect-index").click(
+				function() {
+					var i = 0;
+					var container = $("div#container");
+					container.find("a").remove();
+					for (i = 0; i <= 1; i++) {
+						container.append("<a href='#link'>Invalid Alert Link "
+								+ i + "</a>");
+						container.find("a:eq(" + i + ")").click(function() {
+							alert("You clicked on index:" + i);
+						});
+					}
+				});
+
+		$("a#correct-index").click(
+				function() {
+					var i = 0;
+					var container = $("div#container");
+					container.find("a").remove();
+					for (i = 0; i <= 1; i++) {
+						container.append("<a href='#link'>Valid Alert Link "
+								+ i + "</a>");
+						container.find("a:eq(" + i + ")").click(
+								addIndexOnAlert(i));
+					}
+				});
 	});
 </script>
+
+<style type="text/css">
+body {
+	font: 12px/1.5 arial, sans-serif;
+}
+
+div {
+	padding-left: 10px;
+	border: thin;
+	border-color: black;
+}
+
+a {
+	display: block;
+	padding-right: 10px;
+}
+</style>
+
 
 </head>
 
 
 <body>
 
-
 	Example of odd behaviors with closures in java-script.
 
-	<a id="incorrect-index" href="#incorrect-index">Generate Alert With
-		Correct Index and Call Back</a>
-
-
-	<a id="index-link1" href="#index-link">Index Link</a>
-	<a id="index-link2" href="#index-link">Index Link</a>
+	<div>
+		<a id="incorrect-index" href="#incorrect-index">Generate Incorrect
+			Index Alert</a> <a id="correct-index" href="#correct-index">Generate
+			Correct Index Alert</a>
+	</div>
+	<div id="container"></div>
 
 </body>
 </html>
