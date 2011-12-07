@@ -17,7 +17,8 @@
 		$("a#incorrect-index").click(
 				function() {
 					var i = 0;
-					var container = $("div#container");
+					var container = fetchContainer();
+					removeLinksFromContainer(container);
 					container.find("a").remove();
 					for (i = 0; i <= 1; i++) {
 						container.append("<a href='#link'>Invalid Alert Link "
@@ -31,8 +32,8 @@
 		$("a#correct-index").click(
 				function() {
 					var i = 0;
-					var container = $("div#container");
-					container.find("a").remove();
+					var container = fetchContainer();
+					removeLinksFromContainer(container);
 					for (i = 0; i <= 1; i++) {
 						container.append("<a href='#link'>Valid Alert Link "
 								+ i + "</a>");
@@ -41,6 +42,15 @@
 					}
 				});
 	});
+	
+	function removeLinksFromContainer(container){
+		container.find("a").remove();		
+	}
+	
+	function fetchContainer()
+	{
+		return $("div#container");		
+	}
 </script>
 
 <style type="text/css">
@@ -49,9 +59,10 @@ body {
 }
 
 div {
-	padding-left: 10px;
-	border: thin;
-	border-color: black;
+	border:2px solid;
+	border-radius:10px;
+	padding: 20px 20px 20px 20px;
+	margin-bottom: 10px;
 }
 
 a {
@@ -66,14 +77,14 @@ a {
 
 <body>
 
-	Example of odd behaviors with closures in java-script.
+	<h1>Example of interesting behaviors with closures in java-script.</h1>
 
 	<div>
-		<a id="incorrect-index" href="#incorrect-index">Generate Incorrect
-			Index Alert</a> <a id="correct-index" href="#correct-index">Generate
-			Correct Index Alert</a>
+		<a id="incorrect-index" href="#incorrect-index">Generate Incorrect Index Alert</a>
+		<a id="correct-index" href="#correct-index">Generate Correct Index Alert</a>
 	</div>
-	<div id="container"></div>
+	<div id="container">
+	</div>
 
 </body>
 </html>
