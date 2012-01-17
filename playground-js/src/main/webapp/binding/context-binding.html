@@ -27,7 +27,8 @@
 	})(jQuery);
 
 	$(function() {
-		$("a").click(PAGE.display.bind(PAGE));
+		$("a#valid").click(PAGE.display.bind(PAGE));
+		$("a#invalid").click(PAGE.display);
 	});
 </script>
 
@@ -55,8 +56,9 @@ a {
 <body>
 	<h1>Example of context bindings in java-script</h1>
 
-	<div id="valid-click-binding">
-		<a href="#blah">Do Something</a>
+	<div id="click-binding">
+		<a id="valid" href="#blah">Valid Binding</a>
+		<a id="invalid" href="#blah">Invalid Binding</a>
 	</div>
 
 </body>
