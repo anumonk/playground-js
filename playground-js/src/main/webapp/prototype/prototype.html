@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Types Example</title>
+    <script type="text/javascript" src="../resources/scripts/jquery-1.6.2.min.js">
+    </script>
+
+    <script type="text/javascript" src="types.js"></script>
+
+    <script type="text/javascript">
+      $(function() {
+          
+        var animal = new Animal('moving like an animal');
+        animal.move();
+        animal.type();
+
+        var dog = new Dog("I like to leap around...","jack russell");
+        dog.move();
+        dog.type();
+      });
+    </script>
+
+    <style type="text/css">
+
+      body {
+        font: 12px/1.5 arial, sans-serif;
+      }
+
+      div {
+        border: 2px solid;
+        border-radius: 10px;
+        padding: 20px 20px 20px 20px;
+        margin-bottom: 10px;
+      }
+
+      a {
+        display: block;
+        padding-right: 10px;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+    <h1>Example of types and prototypal inheritance in java-script</h1>
+  </body>
+
+</html>
+

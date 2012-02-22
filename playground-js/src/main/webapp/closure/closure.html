@@ -42,14 +42,13 @@
 					}
 				});
 	});
-	
-	function removeLinksFromContainer(container){
-		container.find("a").remove();		
+
+	function removeLinksFromContainer(container) {
+		container.find("a").remove();
 	}
-	
-	function fetchContainer()
-	{
-		return $("div#container");		
+
+	function fetchContainer() {
+		return $("div#container");
 	}
 </script>
 
@@ -59,8 +58,8 @@ body {
 }
 
 div {
-	border:2px solid;
-	border-radius:10px;
+	border: 2px solid;
+	border-radius: 10px;
 	padding: 20px 20px 20px 20px;
 	margin-bottom: 10px;
 }
@@ -80,11 +79,11 @@ a {
 	<h1>Example of interesting behaviors with closures in java-script.</h1>
 
 	<div>
-		<a id="incorrect-index" href="#incorrect-index">Generate Incorrect Index Alert</a>
-		<a id="correct-index" href="#correct-index">Generate Correct Index Alert</a>
+		<a id="incorrect-index" href="#incorrect-index">Generate Incorrect
+			Index Alert</a> <a id="correct-index" href="#correct-index">Generate
+			Correct Index Alert</a>
 	</div>
-	<div id="container">
-	</div>
+	<div id="container"></div>
 
 </body>
 </html>
