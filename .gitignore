@@ -3,6 +3,6 @@
 .settings
 .springBeans
 target
-.swp
+.*swp
 
 src/main/resources/forceDatabase.properties

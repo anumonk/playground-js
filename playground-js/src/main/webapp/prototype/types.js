@@ -18,6 +18,7 @@ function Dog(movement, breed) {
 Dog.prototype = new Animal();
 
 Dog.prototype.type = function() {
-	console.log("I'm a dog...more specifically, i'm a" + this.breed);
+    this.move();
+   	console.log("I'm a dog...more specifically, i'm a" + this.breed);
 }
 
