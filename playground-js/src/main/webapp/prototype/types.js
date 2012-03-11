@@ -1,24 +1,28 @@
-function Animal(movement) {
-	this.movement = movement;
+function Animal($viewpoint, movement) {
+	this.movement = movement || "moving around like an animal";
+	this.$viewpoint = $viewpoint;
 };
 
 Animal.prototype.move = function() {
-	console.log('I move by...' + this.movement);
+	this.$viewpoint.html("I move by..." + this.movement);
 };
 
 Animal.prototype.type = function() {
-	console.log("All i know is that i am some type of animal");
+	this.$viewpoint.html("All i know is that i am some type of animal...");
 }
 
-function Dog(movement, breed) {
-	Animal.apply(this, arguments);
+function Dog($viewpoint, breed) {
 	this.breed = breed;
+    var movement = "leaping around at quite a remarkable speed";
+    arguments[1] = movement;
+	Animal.apply(this, arguments);
+	
 }
 
+//Hook up the prototype chain
 Dog.prototype = new Animal();
 
 Dog.prototype.type = function() {
-    this.move();
-   	console.log("I'm a dog...more specifically, i'm a" + this.breed);
+	this.$viewpoint.html("I'm a dog...more specifically, i'm a " + this.breed);
 }
 
