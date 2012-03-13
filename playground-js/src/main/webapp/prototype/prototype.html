@@ -11,26 +11,21 @@
     <script type="text/javascript">
         $(function() {
       
-            //TODO: Make this code a little more generic 
+            //TODO: Use ECMA script 5 array loops
 
             var $viewpoint = $('#output');
-            var animal = new Animal($viewpoint);
-            $('#animal-move').click(function(){
-                animal.move();  
-            });
+            
+            var animals = [];
+            animals[0] = new Animal($viewpoint);
+            animals[1] = new Dog($viewpoint, 'jack russell...');            
+            animals[2] = new Dog($viewpoint, 'chocolate lab...');
 
-            $('#animal-type').click(function(){
-                animal.type();  
-            });
-
-            var dog = new Dog($viewpoint,'jack russell..');
-            $('#dog-move').click(function(){
-              dog.move();
-            });
-
-            $('#dog-type').click(function(){
-              dog.type();
-            });
+            for(i = 0; i<animals.length; i++){
+                animals[i].type();
+                animals[i].move();
+                animals[i].communicate("-");
+            }
+            
         });
     </script>
 
@@ -52,28 +47,19 @@
         padding-right: 10px;
       }
 
+      span {
+        display: block;
+        padding-right: 5px;
+      }
+
     </style>
 
   </head>
 
   <body>
     <h1>Example of types and prototypal inheritance in java-script</h1>
-
-    <div id="animal">
-      Animal instance:
-      <a id="animal-move" href="#animal">Move</a>
-      <a id="animal-type" href="#animal">Type</a>
+       <div id="output">
     </div>
-
-    <div id="dog">
-      Dog Instance:
-      <a id="dog-move" href="#dog">Move</a>
-      <a id="dog-type" href="#dog">Type</a>
-    </div>
-
-    <div id="output">
-    </div>
-
   </body>
 
 </html>
