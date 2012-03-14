@@ -16,9 +16,9 @@
             var $viewpoint = $('#output');
             
             var animals = [];
-            animals[0] = new Animal($viewpoint);
-            animals[1] = new Dog($viewpoint, 'jack russell...');            
-            animals[2] = new Dog($viewpoint, 'chocolate lab...');
+            animals.push(new Animal($viewpoint));
+            animals.push(new Dog($viewpoint, 'jack russell...'));            
+            animals.push(new Dog($viewpoint, 'chocolate labradoodle ...'));
 
             for(i = 0; i<animals.length; i++){
                 animals[i].type();

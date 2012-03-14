@@ -1,5 +1,5 @@
 function Animal($viewpoint, movement) {
-	this.movement = movement || "moving around like an animal";
+    this.movement = movement || "moving around like an animal";
 	this.$viewpoint = $viewpoint;
 };
 
@@ -8,9 +8,7 @@ Animal.prototype.move = function() {
 };
 
 Animal.prototype.communicate = function(line) {
-
 	this.$viewpoint.append("<span>" + line + "</span>");
-
 }
 
 Animal.prototype.type = function() {
@@ -20,8 +18,7 @@ Animal.prototype.type = function() {
 function Dog($viewpoint, breed) {
 	this.breed = breed;
 	var movement = "leaping around at quite a remarkable speed";
-	arguments[1] = movement;
-	Animal.apply(this, arguments);
+	Animal.call(this, $viewpoint, movement);
 
 }
 
