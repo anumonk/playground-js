@@ -1,89 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Closures Example</title>
-<script type="text/javascript"
-	src="../resources/scripts/jquery-1.6.2.min.js"></script>
+  <title>Closures Example</title>
+  <script type="text/javascript" src="../resources/scripts/jquery-1.6.2.min.js"></script>
 
-<script type="text/javascript">
-	function addIndexOnAlert(i) {
-		return function() {
-			alert("You clicked on index:" + i);
-		};
-	}
+  <script type="text/javascript">
 
-	$(function() {
+    function addIndexOnAlert(i) {
+      return function() {
+        alert("You clicked on index:" + i);
+      };
+    }
 
-		$("a#incorrect-index").click(
-				function() {
-					var i = 0;
-					var container = fetchContainer();
-					removeLinksFromContainer(container);
-					container.find("a").remove();
-					for (i = 0; i <= 1; i++) {
-						container.append("<a href='#link'>Invalid Alert Link "
-								+ i + "</a>");
-						container.find("a:eq(" + i + ")").click(function() {
-							alert("You clicked on index:" + i);
-						});
-					}
-				});
+    $(function() {
 
-		$("a#correct-index").click(
-				function() {
-					var i = 0;
-					var container = fetchContainer();
-					removeLinksFromContainer(container);
-					for (i = 0; i <= 1; i++) {
-						container.append("<a href='#link'>Valid Alert Link "
-								+ i + "</a>");
-						container.find("a:eq(" + i + ")").click(
-								addIndexOnAlert(i));
-					}
-				});
-	});
+      $("a#incorrect-index").click(function() {
+        var i = 0;
+        var container = fetchContainer();
 
-	function removeLinksFromContainer(container) {
-		container.find("a").remove();
-	}
+        removeLinksFromContainer(container);
+        container.find("a").remove();
 
-	function fetchContainer() {
-		return $("div#container");
-	}
-</script>
+        for (i = 0; i <= 1; i++) {
+          container.append("<a href='#link'>Invalid Alert Link "+ i + "</a>");
+          container.find("a:eq(" + i + ")").click(function() {
+            alert("You clicked on index:" + i);
+          });
+        }
 
-<style type="text/css">
-body {
-	font: 12px/1.5 arial, sans-serif;
-}
+      });
 
-div {
-	border: 2px solid;
-	border-radius: 10px;
-	padding: 20px 20px 20px 20px;
-	margin-bottom: 10px;
-}
+      $("a#correct-index").click(function() {
+        var i = 0;
+        var container = fetchContainer();
+        removeLinksFromContainer(container);
 
-a {
-	display: block;
-	padding-right: 10px;
-}
-</style>
+        for (i = 0; i <= 1; i++) {
+          container.append("<a href='#link'>Valid Alert Link "+ i + "</a>");
+          container.find("a:eq(" + i + ")").click(addIndexOnAlert(i));
+        }
 
+      });
+
+    });
+
+    function removeLinksFromContainer(container) {
+      container.find("a").remove();
+    }
+
+    function fetchContainer() {
+      return $("div#container");
+    }
+
+  </script>
+
+  <style type="text/css">
+    body {
+      font: 12px/1.5 arial, sans-serif;
+    }
+
+    div {
+      border: 2px solid;
+      border-radius: 10px;
+      padding: 20px 20px 20px 20px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      display: block;
+      padding-right: 10px;
+    }
+
+  </style>
 
 </head>
 
-
 <body>
 
-	<h1>Example of interesting behaviors with closures in java-script.</h1>
+  <h1>Example of interesting behaviors with closures in java-script.</h1>
 
-	<div>
-		<a id="incorrect-index" href="#incorrect-index">Generate Incorrect
-			Index Alert</a> <a id="correct-index" href="#correct-index">Generate
-			Correct Index Alert</a>
-	</div>
-	<div id="container"></div>
+  <div>
+    <a id="incorrect-index" href="#incorrect-index">Generate Incorrect Index Alert</a> 
+    <a id="correct-index" href="#correct-index">Generate Correct Index Alert</a>
+  </div>
+
+  <div id="container"></div>
 
 </body>
 </html>

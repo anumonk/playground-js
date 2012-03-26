@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Binding Example</title>
-<script type="text/javascript"
-	src="../resources/scripts/jquery-1.6.2.min.js"></script>
+  <title>Binding Example</title>
+  <script type="text/javascript" src="../resources/scripts/jquery-1.6.2.min.js"></script>
 
-<script type="text/javascript">
-		
-		var flipBackground = function(){
-			flipBackgroundWithArg(this);
-		};
-		
-		var flipBackgroundWithArg = function(obj){
-			obj.style.background = obj.style.background === 'black' ? 'white':'black';
-			obj.style.color = obj.style.color === 'white' ? 'black':'white';	
-		};
-	
-		$(function() {
-			var content = document.getElementById('valid-click-binding');
-			//this will copy the contents of the flipBackground function 
-			content.onclick = flipBackground;
-			
-		});
-		
-	</script>
+  <script type="text/javascript">
 
-<style type="text/css">
-body {
-	font: 12px/1.5 arial, sans-serif;
-}
+    var flipBackground = function(){
+      flipBackgroundWithArg(this);
+    };
 
-div {
-	border: 2px solid;
-	border-radius: 10px;
-	padding: 20px 20px 20px 20px;
-	margin-bottom: 10px;
-}
+    var flipBackgroundWithArg = function(obj){
+      obj.style.background = obj.style.background === 'black' ? 'white':'black';
+      obj.style.color = obj.style.color === 'white' ? 'black':'white';	
+    };
 
-a {
-	display: block;
-	padding-right: 10px;
-}
-</style>
+    $(function() {
+      var content = document.getElementById('valid-click-binding');
+      //this will copy the contents of the flipBackground function 
+      content.onclick = flipBackground;
+    });
 
+  </script>
+
+  <style type="text/css">
+    body {
+      font: 12px/1.5 arial, sans-serif;
+    }
+
+    div {
+      border: 2px solid;
+      border-radius: 10px;
+      padding: 20px 20px 20px 20px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      display: block;
+      padding-right: 10px;
+    }
+  </style>
 
 </head>
 
 <body>
-	<h1>Example of bindings in java-script</h1>
-	
-	<div id="valid-click-binding">
-		Clicking on this element should flip the background correctly.  
-	</div>
-	<div id="invalid-click-binding" onclick="flipBackground()">
-		Clicking on this element will result in errors due to an incorrect binding for this. 
-	</div>
-	<div id="valid-inlineclick-binding" onclick="flipBackgroundWithArg(this)">
-		Clicking on this element will flip the background correctly. 
-	</div>
+  <h1>Example of bindings in java-script</h1>
+
+  <div id="valid-click-binding">
+    Clicking on this element should flip the background correctly.  
+  </div>
+
+  <div id="invalid-click-binding" onclick="flipBackground()">
+    Clicking on this element will result in errors due to an incorrect binding for this. 
+  </div>
+
+  <div id="valid-inlineclick-binding" onclick="flipBackgroundWithArg(this)">
+    Clicking on this element will flip the background correctly. 
+  </div>
+
 </body>
 
 </html>

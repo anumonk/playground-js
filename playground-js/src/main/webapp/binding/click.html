@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Binding Example</title>
+  <script type="text/javascript" src="../resources/scripts/jquery-1.6.2.min.js"></script>
+
+  <script type="text/javascript">
+    $(function(){
+        $("a").click(function(){
+          this.another_prop = "assigning  to dom element object";
+          var local = "a function scoped variable";
+          console.log(local);
+
+          global = "a global scoped variable...";
+          this.another_prop = "assigning  to dom element object";
+          inner();
+
+          function inner(){
+            var innerLocal = "an inner variable";
+            console.log(innerLocal);
+            another_global = "this is global now too!";
+          };
+        });
+    });
+  </script>
+
+  <style type="text/css">
+    body {
+      font: 12px/1.5 arial, sans-serif;
+    }
+    div {
+      border: 2px solid;
+      border-radius: 10px;
+      padding: 20px 20px 20px 20px;
+      margin-bottom: 10px;
+    }
+    a {
+      display: block;
+      padding-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Example of variable scoping..</h1>
+  <a id="click" href="#click">
+    Click me
+  </a>
+</body>
+
+</html>
+
+
+
+
+
+
