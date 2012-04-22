@@ -7,21 +7,28 @@
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.css" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
 	<script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
 	<script type="text/javascript">
 
 		$( document ).on( 'pageinit' , '#add-item' , function( event ) {
       var form = $( event.target ).find( 'form' ),
           validationModel = {
-            rules: {
-              age:    "required",
-              snack:  "required"
-            }
+            rules : {
+              age : "required",
+              snack : "required"
+            },
+            onchange : function(element){
+			        this.element(element);
+		        }
           };
           
-      form.validate( validationModel );
+      var validator = form.validate( validationModel );
 
+      form.validateDelegate("[type='radio'], [type='checkbox'], select, option", "change", function(event){
+        var eventType = "on" + event.type.replace(/^validate/, "");
+        validator.settings[eventType] && validator.settings[eventType].call(validator, this[0], event);
+      });
 		});
 
 	</script>
