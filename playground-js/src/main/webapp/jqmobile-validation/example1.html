@@ -16,11 +16,31 @@
           validationModel = {
             rules : {
               age : "required",
-              snack : "required"
+              snack : "required",
+              feedback: "required"
             },
             onchange : function(element){
 			        this.element(element);
-		        }
+		        },
+            errorPlacement : function( error, element ) {
+              var container;
+              if(element.is(":radio")) {
+                container = findContainer(element);
+                error.appendTo(container);
+              }
+              else{
+                error.insertAfter(element);
+              }
+
+              function findContainer(e){
+                if(e.data('role')==="fieldcontain"){
+                  return e;
+                }
+                else{
+                  return findContainer(e.parent());
+                }
+              }
+            }
           };
           
       var validator = form.validate( validationModel );
@@ -29,6 +49,7 @@
         var eventType = "on" + event.type.replace(/^validate/, "");
         validator.settings[eventType] && validator.settings[eventType].call(validator, this[0], event);
       });
+
 		});
 
 	</script>
@@ -55,7 +76,7 @@
 
   <div data-role="page" id="add-item">
     <div data-role="header">
-			<h1>Snack Feedback Form</h1>
+			<h1>Feedback Form</h1>
 		</div>
 		<div data-role="content">	
       <form action="/snackreview" method="POST">
