@@ -5,16 +5,34 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.css" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
 	<script type="text/javascript">
-		// attach an event handler to the document that handles the pageinit event. 
-		// filter the selected elements that trigger the event to the page div elements
-		$( document ).on('pageinit', '#add-item', function(event) {
-      console.log( "page initialised..." );    
+
+		$( document ).on( 'pageinit' , '#add-item' , function( event ) {
+      var form = $( event.target ).find( 'form' ),
+          validationModel = {
+            rules: {
+              age:    "required",
+              snack:  "required"
+            }
+          };
+          
+      form.validate( validationModel );
+
 		});
+
 	</script>
+
+  <style>
+    label.error { display: block; color: #fe7c6d; margin-top: 0.4em; }
+    @media all and (min-width: 450px) {
+      label.error { margin-left:  22.5%; }
+    }
+  </style>
+
 </head> 
 
 <body> 
@@ -49,11 +67,29 @@
             <label for="cheetos">Cheetos</label>
             <input type="radio" name="snack" id="doritos">
             <label for="doritos">Doritos</label>
+            <input type="radio" name="snack" id="fritos">
+            <label for="fritos">Fritos</label>
+            <input type="radio" name="snack" id="sunchips">
+            <label for="sunchips">Sun Chips</label>
           </fieldset>
+        </div>
+
+        <div data-role="fieldcontain">
+          <label for="feedback">Please describe why you love your favourite snack:</label>
+          <textarea name="feedback" id="feedback"></textarea>
+        </div>
+
+        <div data-role="fieldcontain">
+          <label for="email">Email address (optional):</label>
+          <input type="text" name="email" id="email">
+        </div>
+
+        <div data-role="fieldcontain">
+          <button type="submit" >Send</button>
+          <a href="#home" data-role="button">Cancel</a>
         </div>
       </form>
 		</div>
   </div>
-
 </body>
 </html>
