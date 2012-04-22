@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>Form Validation Example</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
+	<script type="text/javascript">
+		// attach an event handler to the document that handles the pageinit event. 
+		// filter the selected elements that trigger the event to the page div elements
+		$( document ).on('pageinit', 'div[data-role="page"]', function(event) {
+      console.log( "page initialised..." );    
+		});
+	</script>
+</head> 
+
+<body> 
+	<div data-role="page" id="home"> 
+		<div data-role="header">
+			<h1>Form Validation Home</h1>
+		</div>
+		<div data-role="content">	
+      <a href="item.html" data-role="button">Add Item</a>
+		</div>
+	</div>
+</body>
+</html>
