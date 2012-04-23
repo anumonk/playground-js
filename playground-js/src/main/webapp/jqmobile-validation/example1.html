@@ -9,19 +9,13 @@
   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
   <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
-  <script type="text/javascript">
+  <script>
 
-    $( document ).on( "pageinit", "#feedback", function( event ) {
-      var form = $( event.target ).find( "form" );
-      var validationModel = {
+    var formValidation = (function($) {
 
-        rules: {
-          region : "required",
-          snack : "required",
-          feedback: "required"
-        },
+      var defaultOptions = {
 
-        onchange: function(element){
+        onchange: function(element) {
           this.element(element);
         },
 
@@ -40,11 +34,39 @@
 
       };
 
-      var validator = form.validate( validationModel );
+      function delegate( event ) {
+        //code based on the jQuery validation framework
+        var validator = $.data( this[0].form, "validator"),
+          eventType = "onchange";
 
-      form.validateDelegate("[type='radio'], [type='checkbox'], select, option", "change", function(event){
-        var eventType = "on" + event.type.replace(/^validate/, "");
-        validator.settings[eventType] && validator.settings[eventType].call(validator, this[0], event);
+        validator.settings[eventType] && validator.settings[eventType].call( validator, this[0], event);
+      };
+
+      return {
+        validate: function( form, rules) {
+          var validator,
+            validationModel = $.extend( true, {}, defaultOptions, rules),
+            changeEventTargets = "[type='radio'], [type='checkbox'], select, option";
+
+          validator = form.validate( validationModel );
+          form.validateDelegate( changeEventTargets, "change", delegate);
+        }
+      };
+
+    })(jQuery);
+
+
+  </script>
+  <script type="text/javascript">
+
+    $( document ).on( "pageinit", "#feedback", function( event ) {
+      var form = $( event.target ).find( "form" );
+      formValidation.validate( form, {
+        rules: {
+          region: "required",
+          snack: "required",
+          feedback: "required"
+        }
       });
     });
   </script>
