@@ -11,38 +11,33 @@
   <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
   <script type="text/javascript">
 
-    $( document ).on( 'pageinit', '#feedback', function( event ) {
-      var form = $( event.target ).find( 'form' );
+    $( document ).on( "pageinit", "#feedback", function( event ) {
+      var form = $( event.target ).find( "form" );
       var validationModel = {
-        rules : {
-          age : "required",
+
+        rules: {
+          region : "required",
           snack : "required",
           feedback: "required"
         },
 
-        onchange : function(element){
+        onchange: function(element){
           this.element(element);
         },
 
-        errorPlacement : function( error, element ) {
+        errorPlacement: function( error, element ) {
           var container;
-          if(element.is(":radio")) {
-            container = findContainer(element);
-            error.appendTo(container);
+          if ( element.is( ":radio, select" ) ) {
+            container = element.closest( "[data-role='fieldcontain']" );
+            if ( container.length ) {
+              error.appendTo( container );
+            }
           }
           else {
-            error.insertAfter(element);
-          }
-
-          function findContainer(e) {
-            if(e.data('role')==="fieldcontain") {
-              return e;
-            }
-            else {
-              return findContainer( e.parent() );
-            }
+            error.insertAfter( element );
           }
         }
+
       };
 
       var validator = form.validate( validationModel );
@@ -71,12 +66,16 @@
     </div>
     <div data-role="content">
       <form action="/snackreview" method="POST">
-
         <div data-role="fieldcontain">
-          <label for="age">Please enter your age:</label>
-          <input type="text" name="age" id="age">
+          <label for="region">Please enter your region:</label>
+          <select name="region" id="region" data-native-menu="false">
+            <option></option>
+            <option>North</option>
+            <option>South</option>
+            <option>East</option>
+            <option>West</option>
+          </select>
         </div>
-
         <div data-role="fieldcontain">
           <fieldset data-role="controlgroup">
             <legend>
@@ -92,17 +91,14 @@
             <label for="sunchips">Sun Chips</label>
           </fieldset>
         </div>
-
         <div data-role="fieldcontain">
           <label for="feedback">Please describe why you love your favourite snack:</label>
           <textarea name="feedback" id="feedback"></textarea>
         </div>
-
         <div data-role="fieldcontain">
           <label for="email">Email address (optional):</label>
           <input type="text" name="email" id="email">
         </div>
-
         <div data-role="fieldcontain">
           <button type="submit">Send</button>
           <a href="#home" data-role="button">Cancel</a>
