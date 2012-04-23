@@ -1,47 +1,49 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-	<title>Form Validation Example</title> 
+  <title>Form Validation Example</title> 
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.css" />
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
+  <script type="text/javascript">
 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.css" />
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
-	<script type="text/javascript">
+	  $( document ).on( 'pageinit', '#add-item', function( event ) {
 
-		$( document ).on( 'pageinit' , '#add-item' , function( event ) {
-      var form = $( event.target ).find( 'form' ),
-          validationModel = {
-            rules : {
-              age : "required",
-              snack : "required",
-              feedback: "required"
-            },
-            onchange : function(element){
-			        this.element(element);
-		        },
-            errorPlacement : function( error, element ) {
-              var container;
-              if(element.is(":radio")) {
-                container = findContainer(element);
-                error.appendTo(container);
+      var form = $( event.target ).find( 'form' );
+      var validationModel = {
+        rules : {
+          age : "required",
+          snack : "required",
+          feedback: "required"
+        },
+
+        onchange : function(element){
+          this.element(element);
+        },
+
+        errorPlacement : function( error, element ) {
+            var container;
+            if(element.is(":radio")) {
+              container = findContainer(element);
+              error.appendTo(container);
+            }
+            else{
+              error.insertAfter(element);
+            }
+
+            function findContainer(e){
+              if(e.data('role')==="fieldcontain"){
+                return e;
               }
               else{
-                error.insertAfter(element);
-              }
-
-              function findContainer(e){
-                if(e.data('role')==="fieldcontain"){
-                  return e;
-                }
-                else{
-                  return findContainer(e.parent());
-                }
+                return findContainer(e.parent());
               }
             }
-          };
+          }
+      };
           
       var validator = form.validate( validationModel );
 
