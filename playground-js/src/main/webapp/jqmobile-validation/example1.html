@@ -1,6 +1,6 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
+<!DOCTYPE html>
+<html>
+<head>
   <title>Form Validation Example</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
   <script type="text/javascript">
 
-    $( document ).on( 'pageinit', '#add-item', function( event ) {
+    $( document ).on( 'pageinit', '#feedback', function( event ) {
       var form = $( event.target ).find( 'form' );
       var validationModel = {
         rules : {
@@ -65,52 +65,54 @@
 
 <body>
 
-  <div data-role="page" id="add-item">
+  <div data-role="page" id="feedback">
 
     <div data-role="header">
       <h1>Feedback Form</h1>
     </div>
 
     <div data-role="content">
+
       <form action="/snackreview" method="POST">
+        <div data-role="fieldcontain">
+          <label for="age">Please enter your age:</label>
+          <input type="text" name="age" id="age">
+        </div>
 
-      <div data-role="fieldcontain">
-        <label for="age">Please enter your age:</label>
-        <input type="text" name="age" id="age">
-      </div>
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup">
+            <legend>
+              Please select your favourite snack:
+            </legend>
+            <input type="radio" name="snack" id="cheetos">
+            <label for="cheetos">Cheetos</label>
+            <input type="radio" name="snack" id="doritos">
+            <label for="doritos">Doritos</label>
+            <input type="radio" name="snack" id="fritos">
+            <label for="fritos">Fritos</label>
+            <input type="radio" name="snack" id="sunchips">
+            <label for="sunchips">Sun Chips</label>
+          </fieldset>
+        </div>
 
-      <div data-role="fieldcontain">
-        <fieldset data-role="controlgroup">
-          <legend>
-            Please select your favourite snack:
-          </legend>
-          <input type="radio" name="snack" id="cheetos">
-          <label for="cheetos">Cheetos</label>
-          <input type="radio" name="snack" id="doritos">
-          <label for="doritos">Doritos</label>
-          <input type="radio" name="snack" id="fritos">
-          <label for="fritos">Fritos</label>
-          <input type="radio" name="snack" id="sunchips">
-          <label for="sunchips">Sun Chips</label>
-        </fieldset>
-      </div>
+        <div data-role="fieldcontain">
+          <label for="feedback">Please describe why you love your favourite snack:</label>
+          <textarea name="feedback" id="feedback"></textarea>
+        </div>
 
-      <div data-role="fieldcontain">
-        <label for="feedback">Please describe why you love your favourite snack:</label>
-        <textarea name="feedback" id="feedback"></textarea>
-      </div>
+        <div data-role="fieldcontain">
+          <label for="email">Email address (optional):</label>
+          <input type="text" name="email" id="email">
+        </div>
 
-      <div data-role="fieldcontain">
-        <label for="email">Email address (optional):</label>
-        <input type="text" name="email" id="email">
-      </div>
+        <div data-role="fieldcontain">
+          <button type="submit">Send</button>
+          <a href="#home" data-role="button">Cancel</a>
+        </div>
+      </form>
 
-      <div data-role="fieldcontain">
-        <button type="submit" >Send</button>
-        <a href="#home" data-role="button">Cancel</a>
-      </div>
-    </form>
     </div>
+
   </div>
 </body>
 </html>
