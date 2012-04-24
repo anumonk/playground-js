@@ -13,12 +13,7 @@
 
     var formValidation = (function($) {
 
-      var defaultOptions = {
-
-        onchange: function(element) {
-          this.element(element);
-        },
-
+      var settingsForMobile = {
         errorPlacement: function( error, element ) {
           var container;
           if ( element.is( ":radio, select" ) ) {
@@ -34,22 +29,21 @@
 
       };
 
-      function delegate( event ) {
+      function handleChangeEvent( event ) {
         //code based on the jQuery validation framework
-        var validator = $.data( this[0].form, "validator"),
-          eventType = "onchange";
-
-        validator.settings[eventType] && validator.settings[eventType].call( validator, this[0], event);
+        var validator = $.data( this[0].form, "validator");
+        validator.element( this[0] )
       };
 
       return {
         validate: function( form, rules) {
           var validator,
-            validationModel = $.extend( true, {}, defaultOptions, rules),
+            validationModel = $.extend( true, {}, settingsForMobile, rules),
             changeEventTargets = "[type='radio'], [type='checkbox'], select, option";
 
           validator = form.validate( validationModel );
-          form.validateDelegate( changeEventTargets, "change", delegate);
+          form.validateDelegate( changeEventTargets, "change", handleChangeEvent);
+          return validator;
         }
       };
 
