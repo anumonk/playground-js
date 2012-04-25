@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
   <script>
 
-    var formValidation = (function($) {
+    var formValidation = (function( $ ) {
 
       var settingsForMobile = {
         errorPlacement: function( error, element ) {
@@ -30,24 +30,23 @@
       };
 
       function handleChangeEvent( event ) {
-        //code based on the jQuery validation framework
-        var validator = $.data( this[0].form, "validator");
-        validator.element( this[0] )
+        // code based on the jQuery validation framework
+        var validator = $.data( this[0].form, "validator" );
+        validator.element( this[0] );
       };
 
       return {
-        validate: function( form, rules) {
+        validate: function( form, rules ) {
           var validator,
-            validationModel = $.extend( true, {}, settingsForMobile, rules),
+            validationModel = $.extend( true, {}, settingsForMobile, rules ),
             changeEventTargets = "[type='radio'], [type='checkbox'], select, option";
 
           validator = form.validate( validationModel );
-          form.validateDelegate( changeEventTargets, "change", handleChangeEvent);
-          return validator;
+          form.validateDelegate( changeEventTargets, "change", handleChangeEvent );
         }
       };
 
-    })(jQuery);
+    })( jQuery );
 
 
   </script>
